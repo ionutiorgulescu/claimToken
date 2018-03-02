@@ -3,3 +3,15 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#root {
+  position: relative;
+  z-index: 100;
+}
+
+.outer-element {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 200;
+}
