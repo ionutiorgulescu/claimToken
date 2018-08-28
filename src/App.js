@@ -1,69 +1,100 @@
 import React, { Component } from 'react';
-import Portal from './Portal';
-import Card from './Card';
+import { connect } from 'react-redux';
+// import Portal from './Portal';
+// import Card from './Card';
+import web3Service from './services/web3Service';
+import Header from './components/common/Header/';
+import TransferComponent from './components/Transfer';
+
+import NoWalletHeader from './components/common/NoWalletHeader';
+import { Loader } from './components/common/Spinner';
+import NoWalletScreen from './components/NotConnectedScreens/NoWalletScreen';
+import UnsupportedNetwork from './components/NotConnectedScreens/UnsupportedNetwork';
+
 import logo from './logo.svg';
 import './App.css';
+import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import ClaimScreen from './components/ClaimScreen/ClaimScreen';
+
+
+
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+    _renderWrongNetwork() {
+        return (
+            <div>
+                <NoWalletHeader />
+                <UnsupportedNetwork />
+            </div>
+        );
+    }
 
-    this.elementNode = null;
-  }
-
-  componentDidMount() {
-    // this is a hack and should not be done
-    // the reason I am doing it is to display the Portal at elementNode
-    // the correct way would be to use context and another component
-    window.setTimeout(() => {
-      this.forceUpdate();
-    }, 500);
-  }
+    _renderNoWalletScreen() {
+        return (
+            <div>
+                <NoWalletHeader />
+                <NoWalletScreen />
+            </div>
+        );
+    }
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-          <div ref={(node) => { this.elementNode = node }} />
-        </header>
-        <div className="App-wrap">
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus faucibus velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ante nisi, eget finibus tortor posuere sit amet. Mauris a purus rhoncus, pulvinar velit in, consequat magna. Vivamus commodo dolor turpis, at auctor libero tempor nec. Nam at feugiat magna. Sed eget dui porttitor, dapibus magna quis, interdum purus. Integer tempor justo non mauris placerat aliquet. Curabitur id semper velit.
-          </p>
-          <p>
-            Donec posuere massa sed viverra pellentesque. Praesent blandit placerat est, a sagittis nisi consequat ac. Quisque vestibulum suscipit justo vitae vestibulum. Aenean sagittis augue vel arcu tempus egestas. Fusce fermentum ex non aliquam auctor. Aliquam risus magna, faucibus eget viverra sed, blandit ac lorem. Vivamus velit leo, convallis sit amet pretium a, pharetra lacinia augue. Pellentesque vitae lorem quis risus tempus commodo porttitor ac orci. Proin posuere, ex quis gravida suscipit, tellus orci hendrerit erat, vitae pretium erat augue a justo.
-          </p>
-          <p>
-            Pellentesque feugiat placerat ex, in rutrum justo egestas aliquet. Suspendisse a elit at enim blandit scelerisque tincidunt vitae mi. Mauris ornare laoreet enim. Morbi felis mauris, porta vitae sem faucibus, rhoncus bibendum augue. Duis laoreet mi turpis, vitae dictum augue euismod in. Maecenas in nibh orci. Aliquam blandit eleifend lacinia. Sed ultricies, erat in semper condimentum, lacus magna porta massa, ut luctus arcu risus hendrerit purus. Vivamus tempus magna a sem pellentesque cursus. Phasellus fermentum, nibh eu suscipit dictum, mauris turpis sollicitudin quam, eget facilisis ligula velit eu mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur efficitur id felis eu ultricies. Nunc in erat vulputate tortor posuere accumsan. Mauris placerat nisi mattis, volutpat nunc nec, rhoncus mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vestibulum faucibus mollis.
-          </p>
-          <p>
-            Pellentesque feugiat placerat ex, in rutrum justo egestas aliquet. Suspendisse a elit at enim blandit scelerisque tincidunt vitae mi. Mauris ornare laoreet enim. Morbi felis mauris, porta vitae sem faucibus, rhoncus bibendum augue. Duis laoreet mi turpis, vitae dictum augue euismod in. Maecenas in nibh orci. Aliquam blandit eleifend lacinia. Sed ultricies, erat in semper condimentum, lacus magna porta massa, ut luctus arcu risus hendrerit purus. Vivamus tempus magna a sem pellentesque cursus. Phasellus fermentum, nibh eu suscipit dictum, mauris turpis sollicitudin quam, eget facilisis ligula velit eu mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur efficitur id felis eu ultricies. Nunc in erat vulputate tortor posuere accumsan. Mauris placerat nisi mattis, volutpat nunc nec, rhoncus mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vestibulum faucibus mollis.
-          </p>
-          <p>
-            Pellentesque feugiat placerat ex, in rutrum justo egestas aliquet. Suspendisse a elit at enim blandit scelerisque tincidunt vitae mi. Mauris ornare laoreet enim. Morbi felis mauris, porta vitae sem faucibus, rhoncus bibendum augue. Duis laoreet mi turpis, vitae dictum augue euismod in. Maecenas in nibh orci. Aliquam blandit eleifend lacinia. Sed ultricies, erat in semper condimentum, lacus magna porta massa, ut luctus arcu risus hendrerit purus. Vivamus tempus magna a sem pellentesque cursus. Phasellus fermentum, nibh eu suscipit dictum, mauris turpis sollicitudin quam, eget facilisis ligula velit eu mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur efficitur id felis eu ultricies. Nunc in erat vulputate tortor posuere accumsan. Mauris placerat nisi mattis, volutpat nunc nec, rhoncus mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vestibulum faucibus mollis.
-          </p>
-        </div>
-        <Portal>
-          <Card>
-            What's up! What's up! BITCOOOOOOOONEEEECT!
-          </Card>
-        </Portal>
 
-        { this.elementNode !== null && (
-          <Portal mountNode={this.elementNode}>
-            <p style={{ color: 'red' }}>
-              I should not show here!
-            </p>
-          </Portal>
-        ) }
-      </div>
+      if (!this.props.loaded) {
+          return (<Loader />);
+      }
+
+      if (!this.props.connected || !this.props.address) {
+          return this._renderNoWalletScreen();
+      }
+
+      if (this.props.networkId != "3"
+          && this.props.networkId != "1"
+      ) {
+          return this._renderWrongNetwork();
+      }
+
+    return (
+              <Router>
+                  <div>
+
+                      <Header {...this.props} />
+
+                      <Switch>
+                          <Route exact path="/transfers/:transferId" component={TransferComponent} />
+                          <Route path="/receive" component={ClaimScreen} />
+                          <Route path='/r' render={(props) => {
+                              return (
+                                  <Redirect to={{
+                                      pathname: '/receive',
+                                      search: props.location.search
+                                  }} />
+                              );
+                          }} />
+
+                      </Switch>
+
+                  </div>
+              </Router>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+    let balance, contractAddress;
+    const web3 = web3Service.getWeb3();
+    if (state.web3Data.balance) {
+        balance = web3.fromWei(state.web3Data.balance, 'ether').toNumber();
+    }
+    return {
+        address: state.web3Data.address,
+        balance,
+        connected: state.web3Data.connected,
+        networkId: state.web3Data.networkId,
+        networkName: state.web3Data.networkName,
+        loaded: state.web3Data.loaded
+    };
+}
+
+
+export default connect(mapStateToProps)(App);
