@@ -8,11 +8,6 @@ import ButtonPrimary from './../common/ButtonPrimary';
 import { SpinnerOrError } from './../common/Spinner';
 import WithHistory from './../HistoryScreen/WithHistory';
 import { Row, Col, Grid } from 'react-bootstrap';
-// import { getNetworkNameById } from '../../utils';
-// import WithHistory from './../HistoryScreen/WithHistory';
-// import { claimTokens } from '../../actions/transfer';
-// import web3Service from './../../services/web3Service';
-// import styles from './styles';
 
 const qs = require('querystring');
 
@@ -90,7 +85,10 @@ class ClaimScreen extends Component {
                 keyS: this.state.keyS,
                 keyV: this.state.keyV
             });
+
+            // console.log(transfer);
             this.setState({fetching: false});
+
             this.props.history.push(`/transfers/${transfer.id}`);
         } catch (err) {
             console.log({ err });
@@ -116,7 +114,7 @@ class ClaimScreen extends Component {
                     </div>
                     <div style={style.formContainer}>
                         <div style={style.button}>
-                            { this.state.linkClaimed ? (<div className="text-center"> Link has been claimed </div>) :
+                            { this.state.linkClaimed ? (<div className="text-center" style={style.text}> Link has been claimed </div>) :
                                 <ButtonPrimary
                                     handleClick={this._onSubmit.bind(this)}
                                     disabled={this.state.fetching}

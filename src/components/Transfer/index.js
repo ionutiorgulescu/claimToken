@@ -11,7 +11,7 @@ import { Row, Col } from 'react-bootstrap';
 export class TransferScreen extends Component {
 
     render() {
-        const { transfer, currentStep, urlError } = this.props;
+        const { transfer, urlError } = this.props;
         // if transfer not found
         if (urlError) {
             return (<div style={{ color: 'red' }}>{urlError}</div>);

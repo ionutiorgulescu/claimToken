@@ -8,6 +8,7 @@ import { getTransfersForActiveAddress } from './../../data/selectors';
 const styles = {
     backButton: {
         display: 'block',
+        margin: 'auto',
         margin: '0px auto auto'
     },
     nextButton: {
@@ -40,6 +41,7 @@ const styles = {
         padding: '3px 7px 4px 7px'
     },
     backButtonTitle: {
+        display: 'block',
         textAlign: 'center',
         display: 'block',
         fontSize: 16,

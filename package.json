@@ -6,7 +6,7 @@
     "bluebird": "^3.5.1",
     "eth2air-core": "git+https://github.com/Eth2io/eth2airdrop-core.git",
     "ethereumjs-wallet": "^0.6.2",
-    "pure-react-carousel": "^1.13.2",
+    "pure-react-carousel": "1.12.1",
     "query-string": "^6.1.0",
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.3",

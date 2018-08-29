@@ -1,13 +1,10 @@
 import web3Service from "../services/web3Service";
 import {
     getReceivingTransfers,
-    getTransfersForActiveAddress
 } from './../data/selectors';
 import * as actionTypes from './types';
 import { updateBalance } from './web3';
 import eth2air from 'eth2air-core';
-
-const Wallet = require('ethereumjs-wallet');
 
 const createTransfer = (payload) => {
     return {

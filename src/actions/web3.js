@@ -30,14 +30,6 @@ export const setupWeb3 = () => {
     return async (dispatch, getState) => {
         try {
             const web3Details = await web3Service.setup();
-            const {
-                web3,
-                balance,
-                address,
-                connected,
-                networkName,
-                networkId
-            } = web3Details;
 
             dispatch(updateWeb3Details(web3Details));
 

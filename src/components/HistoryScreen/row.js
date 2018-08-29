@@ -22,14 +22,12 @@ const StatusCell = ({ transfer }) => {
                     <div style={styles.statusCell.statusText}>Claiming...</div>
                 </div>
             );
-            break;
         case "received":
             return (
                 <div style={styles.statusCell.container}>
                     <div style={{ ...styles.statusCell.statusText, color: '#2bc64f' }}>Received</div>
                 </div>
             );
-            break;
         default:
             return (
                 <div style={styles.statusCell.container}>

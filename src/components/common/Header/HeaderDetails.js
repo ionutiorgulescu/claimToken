@@ -74,7 +74,7 @@ const HeaderDetails = ({ height, address, networkName, networkId, balance }) => 
                 <div style={styles.headerDetailsGrey}>
                     ADDRESS
                 </div>
-                <div style={(networkId == '1' ? styles.headerDetailsGreen : styles.headerDetailsOrange)}>
+                <div style={(networkId === '1' ? styles.headerDetailsGreen : styles.headerDetailsOrange)}>
                     {address}
                 </div>
             </div>
@@ -85,7 +85,7 @@ const HeaderDetails = ({ height, address, networkName, networkId, balance }) => 
                     </div>
                     <div style={styles.headerDetailsBlack}>
                         {networkName === "Main" ? "Ethereum Main" : "Ropsten Test"}
-                        <i style={{ color: (networkId == '1' ? '#2bc64f' : 'orange'), fontSize: 8, marginLeft: 5, paddingTop: 4 }} className="fa fa-circle"></i>
+                        <i style={{ color: (networkId === '1' ? '#2bc64f' : 'orange'), fontSize: 8, marginLeft: 5, paddingTop: 4 }} className="fa fa-circle"></i>
                     </div>
                 </Col>
                 <Col xs={6} style={styles.balanceContainer}>

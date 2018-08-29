@@ -59,7 +59,6 @@ const styles = {
         width: 20,
         backgroundColor: colors.red,
         borderRadius: '50%',
-        position: "absolute",
         top: 2.5,
         marginLeft: -2.5,
         position: "absolute"
@@ -198,10 +197,8 @@ class e2pTransferBar extends React.Component {
     }
 
     _getDot2() {
-        const { status, isError } = this.props;
-        // if (isError) {
-        //     return (<div className="dot" style={styles.dot2}></div>);
-        // }
+        const { status } = this.props;
+
         if (this._rightDotPulsing()) {
             return (
                 <div className="dot-pulse-outer" style={styles.pulsingRight}>
@@ -231,7 +228,7 @@ class e2pTransferBar extends React.Component {
 
     _getLabel2() {
         let offset;
-        const { status, isError } = this.props;
+        const { status } = this.props;
 
         const labelTitle = (status === 'receiving') ? 'Claiming' : 'Claimed';
 

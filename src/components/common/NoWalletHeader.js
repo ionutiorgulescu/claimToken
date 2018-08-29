@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Row, Col, Grid } from 'react-bootstrap';
-import { HashRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const styles = {

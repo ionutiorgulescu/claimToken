@@ -26,5 +26,16 @@ export default {
         width: '78%',
         margin: 'auto'
     },
-    green: '#2bc64f'
+    green: '#2bc64f',
+    text: {
+        display: 'flex',
+        flexDirection: 'row',
+        fontSize: 14,
+        fontFamily: "SF Display Bold",
+        lineHeight: 1.1,
+        marginRight: 2,
+        marginTop: 30,
+        justifyContent: 'center'
+    },
+
 }

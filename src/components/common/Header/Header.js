@@ -24,9 +24,9 @@ class e2pHeader extends React.Component {
         let headerClass = 'header';
         let balance;
         if (window.location &&
-            window.location.hash === '#/about' ||
+            (window.location.hash === '#/about' ||
             window.location.hash === '#/faq' ||
-            window.location.hash === '#/tos'
+            window.location.hash === '#/tos')
         ) {
             headerClass += " header-big";
         }
@@ -37,7 +37,7 @@ class e2pHeader extends React.Component {
         return (
             <Grid className={headerClass}>
                 <Row className="header-row">
-                    <Col style={{ display: 'flex', marginTop: 30, justifyContent: 'center', padding: 0 }} xs={7}>
+                    <Col style={{ display: 'flex', marginTop: 30, justifyContent: 'center', padding: 0 }}>
 
                         <AddressButton
                             className='addressButton'

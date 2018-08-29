@@ -11,7 +11,7 @@ const Web3Service = () => {
         // Get network provider and web3 instance.
         // See utils/getWeb3 for more info.
         web3 = await getWeb3();
-        // console.log(web3);
+        //console.log(web3);
         if (!web3) {
             throw new Error("Web3 is not connected");
         }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RetinaImage from 'react-retina-image';
-import { Row, Col, Grid } from 'react-bootstrap';
-import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Row } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 
 const styles = {
@@ -139,7 +139,7 @@ class NoWalletScreen extends Component {
                                 <div style={styles.instructionsText}> 3. Receive Ether (link will be reload automatically) </div>
                             </div>
                             <div style={styles.buttonRow}>
-                                <a href="https://metamask.io/" style={{...styles.button, backgroundColor: '#f5a623', borderColor: '#f5a623'}} target="_blank"> Install Metamask </a>
+                                <a href="https://metamask.io/" style={{...styles.button, backgroundColor: '#f5a623', borderColor: '#f5a623'}} target="_blank" rel="noopener noreferrer"> Install Metamask </a>
                             </div>
                         </div>
                     )}

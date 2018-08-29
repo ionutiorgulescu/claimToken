@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RetinaImage from 'react-retina-image';
-import { Row, Col, Grid } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 const styles = {
     title: {

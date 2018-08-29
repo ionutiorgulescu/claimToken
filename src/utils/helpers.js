@@ -1,5 +1,5 @@
 export function getQueryParams(search) {
-    var key = false, res = {}, itm = null;
+    var key = false, res = {};
     // get the query string without the ?
     var qs = search.substring(1);
 
@@ -11,7 +11,8 @@ export function getQueryParams(search) {
     // loop the items in the query string, either
     // find a match to the argument, or build an object
     // with key/value pairs
-    while (itm = pattern.exec(qs)) {
+    var itm = pattern.exec(qs);
+    while (itm) {
         if (key !== false && decodeURIComponent(itm[1]) === key)
             return decodeURIComponent(itm[2]);
         else if (key === false)

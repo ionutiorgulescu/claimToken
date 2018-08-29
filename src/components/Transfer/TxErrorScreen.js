@@ -32,7 +32,6 @@ const styles = {
 
 
 const TxErrorScreen = ({transfer}) => {
-    let subtitle;
     const etherscanLink = getEtherscanLink({txHash: transfer.txHash, networkId: transfer.networkId});
     return (
         <div>

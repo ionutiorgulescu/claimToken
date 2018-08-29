@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Portal from './Portal';
-// import Card from './Card';
+import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import web3Service from './services/web3Service';
 import Header from './components/common/Header/';
 import TransferComponent from './components/Transfer';
-
+import ClaimScreen from './components/ClaimScreen/ClaimScreen';
 import NoWalletHeader from './components/common/NoWalletHeader';
 import { Loader } from './components/common/Spinner';
 import NoWalletScreen from './components/NotConnectedScreens/NoWalletScreen';
 import UnsupportedNetwork from './components/NotConnectedScreens/UnsupportedNetwork';
 
-import logo from './logo.svg';
 import './App.css';
-import { HashRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import ClaimScreen from './components/ClaimScreen/ClaimScreen';
-
-
-
+import './carousel.min.css';
+import './css/bootstrap.css';
 
 class App extends Component {
-    _renderWrongNetwork() {
+    static _renderWrongNetwork() {
         return (
             <div>
                 <NoWalletHeader />
@@ -29,7 +24,7 @@ class App extends Component {
         );
     }
 
-    _renderNoWalletScreen() {
+    static _renderNoWalletScreen() {
         return (
             <div>
                 <NoWalletHeader />
@@ -39,19 +34,18 @@ class App extends Component {
     }
 
   render() {
-
+//console.log(this.props);
       if (!this.props.loaded) {
           return (<Loader />);
       }
 
-      if (!this.props.connected || !this.props.address) {
-          return this._renderNoWalletScreen();
+      if (!this.props.connected || !this.props.address || !this.props.balance) {
+          return App._renderNoWalletScreen();
       }
-
-      if (this.props.networkId != "3"
-          && this.props.networkId != "1"
+      if (this.props.networkId !== "3"
+          && this.props.networkId !== "1"
       ) {
-          return this._renderWrongNetwork();
+          return App._renderWrongNetwork();
       }
 
     return (
@@ -81,7 +75,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    let balance, contractAddress;
+    let balance;
     const web3 = web3Service.getWeb3();
     if (state.web3Data.balance) {
         balance = web3.fromWei(state.web3Data.balance, 'ether').toNumber();
