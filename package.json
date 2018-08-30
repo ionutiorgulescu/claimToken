@@ -20,6 +20,8 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
+    "sshpk": "^1.14.2",
+    "url-parse": "^1.4.3",
     "web3": "^0.20.1"
   },
   "scripts": {
